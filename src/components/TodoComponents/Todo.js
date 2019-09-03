@@ -1,5 +1,8 @@
 import React from 'react';
 
+//Material UI
+import ListItemText from '@material-ui/core/ListItemText';
+
 export default function Todo(props){
 
     console.log(props);
@@ -7,9 +10,9 @@ export default function Todo(props){
 
     return(
         <div className='todo'
-        style={todo.completed ? { textDecoration: 'line-through' } : null}
+        style={todo.completed ? { color:'#757ce8', textDecoration: 'line-through' } : null}
         onClick = {() => props.handleToggleComplete(todo.id)}>
-            {todo.task}
+            <ListItemText style={{ color:'#757ce8'}} primary={todo.task} />
         </div>
     )
 }

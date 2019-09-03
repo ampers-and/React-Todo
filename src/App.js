@@ -2,6 +2,29 @@ import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
+//Material UI
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles( theme => ({
+  root: {
+    padding: theme.spacing(3, 2),
+  },
+  card: {
+    minWidth: 275,
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+}));
+
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -57,21 +80,28 @@ class App extends React.Component {
     this.setState({ todos });
   };
 
+
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
-        <TodoList
-          handleToggleComplete={this.toggleTodoComplete}
-          todos={this.state.todos}
-        />
-        <TodoForm
-          value={this.state.newTodo}
-          handleTodoChange={this.changeTodo}
-          handleAddTodo={this.addTodo}
-          handleClearTodos={this.clearCompletedTodos}
-        />
-      </div>
+      <Container maxWidth="sm">
+        <Card className={useStyles.card} style={{ backgroundColor:'#4d4d4d'}}>
+          <CardContent>
+          <Typography variant="h5" component="h3" style={{ color:'#fff'}}>
+            Welcome to your Todo App!
+          </Typography>
+          <TodoList
+            handleToggleComplete={this.toggleTodoComplete}
+            todos={this.state.todos}
+          />
+          <TodoForm
+            value={this.state.newTodo}
+            handleTodoChange={this.changeTodo}
+            handleAddTodo={this.addTodo}
+            handleClearTodos={this.clearCompletedTodos}
+          />
+          </CardContent>
+        </Card>
+      </Container>
     );
   }
 }
