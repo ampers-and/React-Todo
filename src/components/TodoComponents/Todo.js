@@ -8,7 +8,7 @@ export default function Todo(props){
     return(
         <div className='todo'
         style={todo.completed ? { textDecoration: 'line-through' } : null}
-        onClick = {() => props.toggleComplete(todo.id)}>
+        onClick = {() => props.handleToggleComplete(todo.id)}>
             {todo.task}
         </div>
     )

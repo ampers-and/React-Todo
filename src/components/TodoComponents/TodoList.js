@@ -13,7 +13,7 @@ export default function TodoList(props){
             {todos.map(todo => (
                 <Todo
                     key = {todo.id}
-                    toggleComplete = {props.toggleComplete}
+                    handleToggleComplete = {props.handleToggleComplete}
                     todo={todo}
                 />
                ))}

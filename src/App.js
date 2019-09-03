@@ -22,34 +22,55 @@ class App extends React.Component {
           id: 1528817084358,
           completed: false
         }
-      ]
+      ],
+
+      newTodo:''
+
     };
   }
 
-  todoCompleted = a => {
-    
-    let todos = this.state.todos;
-    todos = todos.map( todo => {
-      if(todo.id === a) {
-        todo.completed = !todo.completed;
-        return todo;
-      }
-      else{
-        return todo;
-      }
-      
-    })
-  }
+  addTodo = e => {
+    e.preventDefault();
+    const nTodo = { task: this.state.newTodo, completed: false, id: Date.now() };
+    this.setState({ 
+      todos: [...this.state.todos, nTodo], 
+      newTodo: '' 
+    });
+  };
 
+  changeTodo = e => this.setState({ [e.target.name]: e.target.value });
+
+  toggleTodoComplete = id => {
+    let todos = this.state.todos;
+    todos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      } 
+        return todo;
+    });
+    this.setState({ todos });
+  };
+
+  clearCompletedTodos = e => {
+    e.preventDefault();
+    let todos = this.state.todos.filter(todo => !todo.completed);
+    this.setState({ todos });
+  };
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList 
-          toggleComplete = {this.todoCompleted}
-          todos={this.state.todos}/>
-        <TodoForm/>
+        <TodoList
+          handleToggleComplete={this.toggleTodoComplete}
+          todos={this.state.todos}
+        />
+        <TodoForm
+          value={this.state.newTodo}
+          handleTodoChange={this.changeTodo}
+          handleAddTodo={this.addTodo}
+          handleClearTodos={this.clearCompletedTodos}
+        />
       </div>
     );
   }

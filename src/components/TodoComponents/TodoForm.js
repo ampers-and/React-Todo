@@ -6,11 +6,12 @@ export default function TodoForm(props){
         <form>
             <input
                 type='text'
-                name ='todo'
+                name ='newTodo'
                 placeholder='...todo'
+                onChange={props.handleTodoChange}
             />
-            <button>Add Todo</button>
-            <button>Clear Completed</button>
+            <button onClick={props.handleAddTodo}>Add Todo</button>
+            <button onClick={props.handleClearTodos}>Clear Completed</button>
         </form>
     )
 }
