@@ -94,7 +94,6 @@ class App extends React.Component {
             todos={this.state.todos}
           />
           <TodoForm
-            value={this.state.newTodo}
             handleTodoChange={this.changeTodo}
             handleAddTodo={this.addTodo}
             handleClearTodos={this.clearCompletedTodos}
